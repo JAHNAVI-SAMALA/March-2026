@@ -1,0 +1,16 @@
+class Solution:
+    def checkOnesSegment(self, s: str) -> bool:
+        seen_one = False
+        seen_zero_after_one = False
+        for c in s:
+            if c == "1":
+                seen_one = True
+                if seen_zero_after_one:
+                    return False
+                    break
+            else:
+                if seen_one :
+                    seen_zero_after_one = True
+        else:
+            return True
+            
