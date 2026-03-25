@@ -1,0 +1,23 @@
+class Solution:
+    def canPartitionGrid(self, grid: List[List[int]]) -> bool:
+        total = sum(sum(row) for row in grid)
+        if total % 2 != 0:
+            return False
+
+        prefix = 0
+        for i in range(len(grid)):
+            prefix += sum(grid[i])
+            if prefix * 2 == total and i != len(grid) - 1:
+                return True
+
+        prefix = 0
+        m, n = len(grid), len(grid[0])
+        for j in range(n):
+            col_sum = 0
+            for i in range(m):
+                col_sum += grid[i][j]
+            prefix += col_sum
+            if prefix * 2 == total and j != n - 1:
+                return True
+
+        return False
